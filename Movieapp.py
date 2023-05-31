@@ -32,10 +32,9 @@ st.header('Movie Recommender System')
 movies = pickle.load(open('movies_dict.pkl', 'rb'))
 movies= pd.DataFrame(movies)
 
-url = "https://drive.google.com/uc?export=download&id=1pqnm3YJm8Jdfdv0f7QU45AHqNjjP1FjO"
+url = "https://drive.google.com/uc?export=download&id=1pqnm3YJm8Jdfdv0f7QU45AHqNjjP1FjO&confirm=t&uuid=328d5fff-3d47-41df-88ed-e65337c5f87c"
 response = requests.get(url)
-file_byte = io.BytesIO(response.content)
-similarity = pickle.load(open(file_byte, 'rb'))
+similarity = pickle.loads(response.content, encoding='latin1')
 
 
 
