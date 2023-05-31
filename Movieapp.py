@@ -2,7 +2,7 @@ import pickle
 import pandas as pd
 import streamlit as st
 import requests
-
+import io
 
 def fetch_poster(movie_id):
     url = "https://api.themoviedb.org/3/movie/{}?api_key=bcccc4e4539b15f00bbd844c8175bd8e&language=en-US".\
@@ -31,7 +31,11 @@ def recommend(movie):
 st.header('Movie Recommender System')
 movies = pickle.load(open('movies_dict.pkl', 'rb'))
 movies= pd.DataFrame(movies)
-similarity = pickle.load(open(r'Movie-Recommendation-Web-App/similarity.pkl', 'rb'))
+
+url = "https://drive.google.com/uc?export=download&id=1pqnm3YJm8Jdfdv0f7QU45AHqNjjP1FjO"
+response = requests.get(url)
+file_byte = io.BytesIO(response.content)
+similarity = pickle.load(open(file_byte, 'rb'))
 
 
 
